@@ -19,19 +19,25 @@ def main():
     label = Label(header, text="Header Frame")
     label.pack()
 
+    # Create the players pane
     players = LabelFrame(window, padx=10, pady=10, width=30)
     players.grid(row=1, column=0, sticky=N+S)
     label = Label(players, text="Players Frame")
     label.pack()
 
+    # Create the players pane
     board = LabelFrame(window, padx=20, pady=20)
     board.grid(row=1, column=1)
 
+    # Create the footer pane
     footer = LabelFrame(window, padx=20, pady=20)
     footer.grid(row=2, column=0, columnspan=2, sticky=W+E)
     label = Label(footer, text="Footer Frame")
     label.pack()
 
+    # Add all the 19x19 images to the board pane to initialize the board
+    # - For each spot on the board, bind enter, leave, and playBead functions
+    # - Upper left is [0, 0], bottom right is [18, 18], middle is [9, 9]
     for row in range(19):
         for column in range(19):
             image = getImage(row, column)
@@ -50,6 +56,7 @@ def enter(e):
     row = e.widget.grid_info()['row']
     column = e.widget.grid_info()['column']
 
+    print('row', row, 'column', column, 'beadsPlayed', beadsPlayed);
     if beadsPlayed == 0 and (row != 9 or column != 9):
         return
 
