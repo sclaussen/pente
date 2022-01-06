@@ -53,35 +53,40 @@ def main():
 def enter(e):
     global beadsPlayed
 
-    row = e.widget.grid_info()['row']
-    column = e.widget.grid_info()['column']
+    row = int(e.widget.grid_info()['row'])
+    column = int(e.widget.grid_info()['column'])
 
-    print('row', row, 'column', column, 'beadsPlayed', beadsPlayed);
+    print('Entering:', str(row) + '/' + str(column), 'beadsPlayed', beadsPlayed);
     if beadsPlayed == 0 and (row != 9 or column != 9):
         return
 
-    if beadsPlayed == 1 and (row > 6 and row < 12 and column > 6 and column < 12):
+    if beadsPlayed == 2 and (row > 6 and row < 12 and column > 6 and column < 12):
         return
 
+    # Show the players bead so they can visualize what it would look like
     e.widget.config(image=getBeadImage(row, column, currentPlayer))
 
 
 def leave(e):
-    row = e.widget.grid_info()['row']
-    column = e.widget.grid_info()['column']
+    row = int(e.widget.grid_info()['row'])
+    column = int(e.widget.grid_info()['column'])
+    print('Leaving:', str(row) + '/' + str(column));
     e.widget.config(image=getImage(row, column))
 
 
 def playBead(e):
-    global beadsPlayed
+    global currentPlayer, beadsPlayed
 
-    row = e.widget.grid_info()['row']
-    column = e.widget.grid_info()['column']
+    row = int(e.widget.grid_info()['row'])
+    column = int(e.widget.grid_info()['column'])
+    print('playing bead:', str(row) + '/' + str(column), 'beadsPlayed', beadsPlayed);
 
     if beadsPlayed == 0 and (row != 9 or column != 9):
+        print('Opening move must be at 9,9');
         return
 
-    if beadsPlayed == 1 and (row > 6 and row < 12 and column > 6 and column < 12):
+    if int(beadsPlayed) == 1 and (row > 6 and row < 12 and column > 6 and column < 12):
+        print('Second move must be ...');
         return
 
     e.widget.config(image=getBeadImage(row, column, currentPlayer))
