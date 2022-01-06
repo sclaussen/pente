@@ -8,7 +8,7 @@ def main():
     root.geometry("300x300")
 
 
-    corner1 = PilImage.open('corner.gif')
+    corner1 = PilImage.open('images/corner.gif')
     corner2 = corner1.transpose(PilImage.ROTATE_90)
     corner3 = corner1.transpose(PilImage.ROTATE_180)
     corner4 = corner1.transpose(PilImage.ROTATE_270)
@@ -18,10 +18,10 @@ def main():
     corner3a = ImageTk.PhotoImage(corner3)
     corner4a = ImageTk.PhotoImage(corner4)
 
-    Button(root, image=corner1a).pack()
-    Button(root, image=corner2a).pack()
-    Button(root, image=corner3a).pack()
-    Button(root, image=corner4a).pack()
+    Label(root, image=corner1a).pack()
+    Label(root, image=corner2a).pack()
+    Label(root, image=corner3a).pack()
+    Label(root, image=corner4a).pack()
 
     root.mainloop()
 

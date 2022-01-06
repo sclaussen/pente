@@ -1,5 +1,5 @@
 from tkinter import *
-from images import *
+from view.images import *
 
 
 currentPlayer = 0
